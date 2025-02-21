@@ -40,7 +40,12 @@ async function run() {
       res.send(result);
     })
 
-
+    //----task-management------//
+    app.post('/tasks', async (req, res) => {
+      const newTasks = req.body;
+      const result = await tasksCollection.insertOne(newTasks);
+      res.send(result);
+    })
 
   } finally {
     // Ensures that the client will close when you finish/error
