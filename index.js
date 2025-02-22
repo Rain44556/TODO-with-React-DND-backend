@@ -41,6 +41,13 @@ async function run() {
     })
 
     //----task-management------//
+
+    app.get('/tasks', async (req, res) => {
+      const cursor = tasksCollection.find();
+      const result = await cursor.toArray();
+      res.send(result);
+    })
+
     app.post('/tasks', async (req, res) => {
       const newTasks = req.body;
       const result = await tasksCollection.insertOne(newTasks);
